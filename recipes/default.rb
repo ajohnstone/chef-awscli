@@ -7,6 +7,8 @@
 # All rights reserved - Do Not Redistribute
 #
 
+include_recipe "python"
+
 python_pip "awscli" do
   action :install
 end
