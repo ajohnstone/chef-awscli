@@ -13,11 +13,20 @@ python_pip "awscli" do
   action :install
 end
 
+if node[:awscli][:complete]
+  file '/etc/profile.d/awscli.sh' do
+    owner "root"
+    group "root"
+    mode 00644
+    content 'complete -C aws_completer aws'
+  end
+end
+
 directory "/root/.aws" do
   action :create
 end
 
-template "root/.aws/config" do
+template "/root/.aws/config" do
   source "config.erb"
   action :create
 end
