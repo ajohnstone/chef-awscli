@@ -31,4 +31,5 @@ template "#{node[:awscli][:user_home]}/.aws/config" do
   source "config.erb"
   action :create
   owner node[:awscli][:user]
+  mode 0600
 end
