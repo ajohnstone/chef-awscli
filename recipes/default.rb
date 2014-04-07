@@ -22,11 +22,13 @@ if node[:awscli][:complete]
   end
 end
 
-directory "/root/.aws" do
+directory "#{node[:awscli][:user_home]}/.aws" do
   action :create
+  owner node[:awscli][:user]
 end
 
-template "/root/.aws/config" do
+template "#{node[:awscli][:user_home]}/.aws/config" do
   source "config.erb"
   action :create
+  owner node[:awscli][:user]
 end
