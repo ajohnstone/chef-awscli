@@ -11,6 +11,7 @@ include_recipe "python"
 
 python_pip "awscli" do
   action :install
+  version node[:awscli][:installing_version] if node[:awscli][:installing_version].present?
 end
 
 if node[:awscli][:complete]
