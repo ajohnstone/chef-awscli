@@ -3,15 +3,16 @@
 # Recipe:: default
 #
 # Copyright (C) 2013 Nils De Moor
-# 
+#
 # All rights reserved - Do Not Redistribute
 #
 
 include_recipe "python"
 
+
 python_pip "awscli" do
   action :install
-  version node[:awscli][:installing_version] if node[:awscli][:installing_version].present?
+  version node[:awscli][:version]
 end
 
 if node[:awscli][:complete]
