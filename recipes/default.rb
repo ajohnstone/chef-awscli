@@ -29,9 +29,11 @@ directory "#{node[:awscli][:user_home]}/.aws" do
   owner node[:awscli][:user]
 end
 
-template "#{node[:awscli][:user_home]}/.aws/config" do
-  source "config.erb"
-  action :create
-  owner node[:awscli][:user]
-  mode 0600
+if node[:awscli][:access_key]
+  template "#{node[:awscli][:user_home]}/.aws/config" do
+    source "config.erb"
+    action :create
+    owner node[:awscli][:user]
+    mode 0600
+  end
 end
